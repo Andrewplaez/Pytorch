@@ -21,9 +21,14 @@ random_tensor = torch.rand(1, 3, 4)
 #Created a Zeros tensor
 ZeroTensor = torch.zeros(1, 3, 4)
 
+# Create all ones
+Ones = torch.ones(1, 3, 4)
+
+print(Ones.dtype)
 # prints 
 print(scalar.ndim, vector.ndim, Matrix.ndim, sep=" : ")
 print(Matrix.shape, vector.shape)
 print(random_tensor.ndim)
 print(ZeroTensor)
-print(ZeroTensor * random_tensor)
+print(ZeroTensor * random_tensor, Ones)
+
