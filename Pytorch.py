@@ -5,8 +5,16 @@ import pandas as pd
 
 #Scalar
 scalar = torch.tensor(7)
-print(scalar.ndim)
+
 
 # Vector
 vector = torch.tensor([7, 5])
-print(vector.ndim)
+
+
+# Matrices
+Matrix = torch.tensor([[1, 2], 
+                       [3, 4]])
+
+# prints 
+print(scalar.ndim, vector.ndim, Matrix.ndim, sep=" : ")
+print(Matrix.shape, vector.shape)
