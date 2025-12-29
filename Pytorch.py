@@ -24,11 +24,11 @@ ZeroTensor = torch.zeros(1, 3, 4)
 # Create all ones
 Ones = torch.ones(1, 3, 4)
 
-print(Ones.dtype)
-# prints 
-print(scalar.ndim, vector.ndim, Matrix.ndim, sep=" : ")
-print(Matrix.shape, vector.shape)
-print(random_tensor.ndim)
-print(ZeroTensor)
-print(ZeroTensor * random_tensor, Ones)
+#create a randon range of numbers in the tensor
+one_to_ten = torch.arange(start=1, end=1000, step=80)
 
+# copying the range
+Zeros = torch.zeros_like(one_to_ten)
+
+# testing
+print(Zeros)
