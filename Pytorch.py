@@ -3,32 +3,17 @@ import numpy
 import matplotlib.pyplot as plt
 import pandas as pd
 
-#Scalar
-scalar = torch.tensor(7)
+# Float 32 tensor
+float_32_tensor = torch.tensor([3.0, 6.0, 9.0], # creating a tensor
+                               dtype= None, # what data type is the tensor 
+                               device= None, #what device is your tensor on
+                               requires_grad=False, # if wished to keep track of gradients
+                               )
+
+float_16_tensor = float_32_tensor.type(dtype= torch.float16) # turn the tensors to float 16
+int_32_tensor = torch.tensor([3, 6, 9],
+                             dtype = torch.int32,
+                             )
 
 
-# Vector
-vector = torch.tensor([7, 5])
-
-
-# Matrices
-Matrix = torch.tensor([[1, 2], 
-                       [3, 4]])
-
-#create a randon tensor
-random_tensor = torch.rand(1, 3, 4)
-
-#Created a Zeros tensor
-ZeroTensor = torch.zeros(1, 3, 4)
-
-# Create all ones
-Ones = torch.ones(1, 3, 4)
-
-#create a randon range of numbers in the tensor
-one_to_ten = torch.arange(start=1, end=1000, step=80)
-
-# copying the range
-Zeros = torch.zeros_like(one_to_ten)
-
-# testing
-print(Zeros)
+print(int_32_tensor * float_32_tensor) # multipilying two tensors
