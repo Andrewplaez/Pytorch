@@ -15,6 +15,10 @@ vector = torch.tensor([7, 5])
 Matrix = torch.tensor([[1, 2], 
                        [3, 4]])
 
+#create a randon tensor
+random_tensor = torch.rand(1, 3, 4)
+
 # prints 
 print(scalar.ndim, vector.ndim, Matrix.ndim, sep=" : ")
 print(Matrix.shape, vector.shape)
+print(random_tensor.ndim)
