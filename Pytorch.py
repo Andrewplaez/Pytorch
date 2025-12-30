@@ -29,3 +29,6 @@ random_tensor = torch.rand(3, 4)
 Adding_Tensor = torch.tensor([1, 2, 3])
 
 print(Adding_Tensor + 10)
+
+# in built tensor functions 
+print(torch.mul(Adding_Tensor, 10))
