@@ -1,76 +1,57 @@
 import torch
-import numpy
+import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
-# Float 32 tensor
-float_32_tensor = torch.tensor([3.0, 6.0, 9.0], # creating a tensor
-                               dtype= None, # what data type is the tensor 
-                               device= None, #what device is your tensor on
-                               requires_grad=False, # if wished to keep track of gradients
-                               )
+# 1. Data (preparing and loading)
 
-float_16_tensor = float_32_tensor.type(dtype= torch.float16) # turn the tensors to float 16
-int_32_tensor = torch.tensor([3, 6, 9],
-                             dtype = torch.int32, #intiger type
-                             )
+# Data can be almost anything 
 
-# Create a tensor 
-random_tensor = torch.rand(3, 4)
+# linear regression 
 
+# Known Parameters
 
-#tensor operations
-#" Tensor operations include "
-# Addition & Subtraction
-# Multiplication & division
+weight = 0.7
+bias = 0.3
 
-# adding tensors
- 
-Adding_Tensor = torch.tensor([1, 2, 3])
+# Create
+start = 0 
+end = 1
+step = 0.02
+X = torch.arange(start, end, step).unsqueeze(dim=1)
+y = weight * X + bias
 
-# dot product 
-matrix_1 = torch.tensor([[1, 2, 3],
-                         [3, 4, 5]])
+#Generalisation : the ability to adapt to a unseen situation
 
-matrix_2 = torch.tensor([[6, 7, 8],
-                         [7, 9, 11]])
+#Create a training/test split
+train_split = int(0.8 * len(X))
+X_train, y_train = X[:train_split], y[:train_split]
+X_test, y_test = X[train_split:], y[train_split:]
 
-print(Adding_Tensor + 10)
+print(len(X_train), len(y_train), len(X_test), len(y_test))
 
-# in built tensor functions 
-print(torch.mul(Adding_Tensor, 10))
-
-# Multiplying tensor
-print(torch.matmul(matrix_1, matrix_2.T))
-
-# rules for multiplying tensors
-# 1 : the inner dimensions must match 
-# 2 : the resulting matricx has the dimension of the outer matrix
-
-# Shapes for matrix multiplication
-#Create two Matrices 
-
-tensor_A = torch.tensor([[1, 2],
-                         [3, 4],
-                         [5, 6],])
-
-tensor_B = torch.tensor([[7, 10],
-                         [8, 11],
-                         [9, 12]])
+def Plot_predictions(train_data = X_train,
+                     train_label = y_train,
+                     test_data = X_test,
+                     test_label = y_test,
+                     predictions = None):
+    plt.figure(figsize=(10, 7)) # plots Data test Data and compares predictions
 
 
-# to fix a tensor shape issues we can manipulate the shape of our tensor
-#by using transpose
+    # Plot Training Data in blue
+    plt.scatter(train_data, train_label, c="b", s=4,label="training data")
 
-New_Tensor_B = tensor_B.T
+    #Plot test Data in green
+    plt.scatter(test_data, test_label, c="g", s=4,label="testing data")
 
-# min, max, mean, sum 
+    #Are there predictions 
+    if predictions is not None:
+        #Plot the predictions if they exist
+        plt.scatter(test_data, predictions, c="r", s=4, label = predictions)
+    
+    # Show the legend
+    plt.legend(prop={"size" : 14})
 
-torch.min(tensor_A) or tensor_A.min
 
-#find the mean 
-
-torch.mean(tensor_A.type(torch.float32))
-
-# find the sum
-torch.sum(tensor_A)
+Plot_predictions(X_train, y_train, X_test, y_test)
+plt.show()
